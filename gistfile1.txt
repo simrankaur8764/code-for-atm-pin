@@ -15,7 +15,7 @@ namespace ConsoleApp23
     {
         public void runTest1()
         {
-            ATM a1 = new ATM();
+            ATM a1 = new ATM("1234");
             Console.WriteLine("Please enter PIN CODE:");
             String userCode = Console.ReadLine();
             a1.set_PINNumber(userCode);
@@ -26,32 +26,38 @@ namespace ConsoleApp23
 
     class ATM
     {
+        public ATM(String thisCode)
+        {
+            userPINCode = thisCode;
+        }
         private String PINNumber;
-
+        private String userPINCode;
         public void set_PINNumber(String pinNumber)
         {
-            if (doSecurityCheck())
-            {
-                PINNumber = pinNumber;
-                Console.WriteLine("Passes Security Check");
-                Console.ReadLine();
-            }
-            else
-            {   Console.WriteLine("Notify Bank Security");
-                Console.ReadLine();
-            }
+            PINNumber = userPINCode ;
         }
 
         public String get_PINNumber()
         {
+            doSecurityCheck();
+            PINNumber = userPINCode;
             return PINNumber;
         }
 
         private bool doSecurityCheck()
         {
-            return true;
+            if (PINNumber == userPINCode)
+            {
+                Console.WriteLine("Pass security check");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("FAILED security check");
+                return false;
+            }
         }
-
-
     }
+
+
 }
