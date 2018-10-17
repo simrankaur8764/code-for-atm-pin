@@ -1,0 +1,57 @@
+using System;
+
+namespace ConsoleApp23
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Driver d1 = new Driver();
+            d1.runTest1();
+        }
+    }
+
+    class Driver
+    {
+        public void runTest1()
+        {
+            ATM a1 = new ATM();
+            Console.WriteLine("Please enter PIN CODE:");
+            String userCode = Console.ReadLine();
+            a1.set_PINNumber(userCode);
+            Console.WriteLine(a1.get_PINNumber());
+            Console.ReadLine();
+        }
+    }
+
+    class ATM
+    {
+        private String PINNumber;
+
+        public void set_PINNumber(String pinNumber)
+        {
+            if (doSecurityCheck())
+            {
+                PINNumber = pinNumber;
+                Console.WriteLine("Passes Security Check");
+                Console.ReadLine();
+            }
+            else
+            {   Console.WriteLine("Notify Bank Security");
+                Console.ReadLine();
+            }
+        }
+
+        public String get_PINNumber()
+        {
+            return PINNumber;
+        }
+
+        private bool doSecurityCheck()
+        {
+            return true;
+        }
+
+
+    }
+}
